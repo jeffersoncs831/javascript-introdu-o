@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="mensagem"></h1>
+    <button id="btn" onclick="boasVindas()">Boas vindas</button>
+
+
+
+    <script>
+        let h1 = document.querySelector("#mensagem")
+        h1.innerText = "Ola mundo";
+        h1.style.color = "blueviolet";
+// h1.style.backgroundColor = "#c42079";
+
+
+        function boasVindas(){
+            h1.innerHTML = "Seja bem-vindo";
+        }
+    </script>
+</body>
+</html>

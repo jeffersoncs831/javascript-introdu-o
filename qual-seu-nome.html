@@ -1,37 +1,150 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Descubra seu nome</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body class="h-screen flex justify-center items-center bg-yellow-400">
-
-<div class="w-[500px] bg-white rounded-xl p-4">
-    <h1 class="text-2xl font-semibold text-center mb-8">Descubra seu nome de forrozeiro</h1>
-    <div class="flex gap-3">
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="bg-[url('/javascript-introdu-o/fundo2.jpeg')] bg-contain bg-cover bg-center h-screen flex justify-center items-end">
+   
+    <div
+      class="w-[500px] h-50 bg-grey/0 backdrop-blur-sm  rounded-xl p-4 shadow-md drop-shadow-[0_0_6px_white]"
+    >
+      <h1 class="text-2xl font-semibold text-center mb-6">
+        Descubra seu nome de forrozeiro 🎤!
+      </h1>
+      <div class="flex">
         <div class="flex-1">
-            <label for="">Dia do aniversario</label>
-            <input type="text" class="outline rounded pl-3 " id="dia">
+          <label for="">Dia do aniversario</label>
+          <select class="outline rounded pl-2 bg-white" id="dia">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+            <option value="25">25</option>
+            <option value="26">26</option>
+            <option value="27">27</option>
+            <option value="28">28</option>
+            <option value="29">29</option>
+            <option value="30">30</option>
+            <option value="31">31</option>
+          </select>
         </div>
         <div class="flex-1">
-            <label for="">Mês do aniversario</label>
-            <input type="text" class="outline rounded pl-3" id="mes">
+          <label for="">Mês do aniversario</label>
+          <select class="outline rounded pl-1 w-19 bg-white" id="mes">
+            <option value="1">Janeiro</option>
+            <option value="2">Fevereiro</option>
+            <option value="3">Março</option>
+            <option value="4">Abril</option>
+            <option value="5">Maio</option>
+            <option value="6">Junho</option>
+            <option value="7">Julho</option>
+            <option value="8">Agosto</option>
+            <option value="9">Setembro</option>
+            <option value="10">Outubro</option>
+            <option value="11">Novembro</option>
+            <option value="12">Dezembro</option>
+          </select>
         </div>
+      </div>
+      <button
+        onclick="escolherNome()"
+        class="mt-4 w-full bg-black text-white font-bold py-2 px-4 rounded hover:bg-gray-400 hover:text-black transition cursor-pointer"
+      >
+        Descobrir
+      </button>
+       <div
+        id="mensagem"
+        class="mt-1 text-center text-xl animate-pulse text-3xl font-bold text-black "
+      ></div>
     </div>
-        <button  onclick="escolherNome()" class="cursor-pointer">Descobrir</button>
-        <div  id="mensagem"></div>
-</div>
+    
 
-<script>
-    function escolherNome(){
-        let div = document.querySelector('#mensagem')
-        let inputDia = document.querySelector('#dia')
-        let inputMes = document.querySelector('#mes')
-        div.innerHTML = `escolher o dia:${inputDia.value}, escolher o mês:${inputMes.value}`
-    }
-</script>
+    <script>
+      const nomesDia = {
+        1: "Marcão",
+        2: "Wesley",
+        3: "Bruninho",
+        4: "Jailson",
+        5: "Gordin",
+        6: "Zé Banguelo",
+        7: "Cleiton",
+        8: "Duduzinho",
+        9: "Tonny",
+        10: "Pedrão",
+        11: "Chico Beiço",
+        12: "Manuelson",
+        13: "Cabeludo",
+        14: "Toinho",
+        15: "Fabão",
+        16: "Galego",
+        17: "Mago",
+        18: "Mané Catinga",
+        19: "Tripinha",
+        20: "Valtinho",
+        21: "Valcley",
+        22: "Vaginaldo",
+        23: "Juninho",
+        24: "Angolano",
+        25: "Xandinho",
+        26: "Zézin",
+        27: "Gilvanei",
+        28: "vavá",
+        29: "Laerte",
+        30: "Janaildo",
+        31: "Douglinhas",
+      };
 
-</body>
+      const nomesMes = {
+        1: "do Teclados",
+        2: "Pegador",
+        3: "Pipocado",
+        4: "Milionario",
+        5: "da Pisadinha",
+        6: "Danadão",
+        7: "Estourado",
+        8: "do Arrocha",
+        9: "Taradão",
+        10: "das Meninas",
+        11: "Solteirão",
+        12: "Descarado",
+      };
+
+      function escolherNome() {
+        const dia = document.querySelector("#dia").value;
+        const mes = document.querySelector("#mes").value;
+
+        const parte1 = nomesDia[dia];
+        const parte2 = nomesMes[mes];
+
+        const resultado = `${parte1} ${parte2}`;
+        document.getElementById(
+          "mensagem"
+        ).innerText = ` Puxa o fole 🎤: ${resultado} 🔥 `;
+      }
+    </script>
+  </body>
 </html>

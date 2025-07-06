@@ -1,33 +1,82 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendario</title>
-</head>
-<body>
-    <select id="dia"></select>
-    <select id="mes"></select>
-    <select id="ano"></select>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendário</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+  <body class="flex flex-col justify-center items-center space-y-10 h-screen w-full">
+    <h1 class="text-3xl font-semibold">Escolha uma Data</h1>
+
+    <div class="px-6 py-2 rounded-full shadow-md font-semibold bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 hover:opacity-90 transition w-90 h-8 rounded-[15px] flex items-center justify-center gap-3">
+      <select class="outline rounded pl-2 bg-white/30" id="dia"></select>
+      <select class="outline rounded pl-2 bg-white/30" id="mes"></select>
+      <select class="outline rounded pl-2 bg-white/30" id="ano"></select>
+    </div>
+
+    
+    <p id="resultado" class="text-3xl font-semibold"></p>
 
     <script>
-        const selectDia = document.querySelector("#dia");
-        const selectMes = document.querySelector("#mes");
-        const selectAno = document.querySelector("#ano");
+      const selectDia = document.querySelector("#dia");
+      const selectMes = document.querySelector("#mes");
+      const selectAno = document.querySelector("#ano");
+      const resultado = document.querySelector("#resultado");
 
-        for(let i = 1; i <= 31; i++){
-            selectDia.innerHTML += `<option value="${i}">${i}</option>`;
+      for (let i = 1; i <= 31; i++) {
+        selectDia.innerHTML += `<option value="${i}">${i}</option>`;
+      }
+
+      const meses = [
+        "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+        "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+      ];
+
+      for (let i = 0; i < meses.length; i++) {
+        selectMes.innerHTML += `<option value="${i}">${meses[i]}</option>`;
+      }
+
+      for (let i = 2025; i >= 1975; i--) {
+        selectAno.innerHTML += `<option value="${i}">${i}</option>`;
+      }
+
+      selectDia.addEventListener("change", calcular);
+      selectMes.addEventListener("change", calcular);
+      selectAno.addEventListener("change", calcular);
+
+      function calcular() {
+        const dia = parseInt(selectDia.value);
+        const mes = parseInt(selectMes.value);
+        const ano = parseInt(selectAno.value);
+
+        if (isNaN(dia) || isNaN(mes) || isNaN(ano)) return;
+
+        const hoje = new Date();
+        const dataNascimento = new Date(ano, mes, dia);
+
+        
+        if (
+          dataNascimento.getDate() !== dia ||
+          dataNascimento.getMonth() !== mes ||
+          dataNascimento.getFullYear() !== ano
+        ) {
+          resultado.textContent = "Data inválida!";
+          return;
         }
 
-        const meses = ["Janeiro", "Fevereiro", "Março", "Abril"]
-
-        for(let i = 0; i < meses.length; i++){
-            selectMes.innerHTML += `<option value="">${meses[i]}</option>`;
+        
+        let idade = hoje.getFullYear() - ano;
+        const aniversarioEsteAno = new Date(hoje.getFullYear(), mes, dia);
+        if (hoje < aniversarioEsteAno) {
+          idade--;
         }
 
-         for(let i = 2025; i >= 1975; i--){
-            selectAno.innerHTML += `<option value="${i}">${i}</option>`;
-        }
+        
+        const bissexto = (ano % 4 === 0 && ano % 100 !== 0) || (ano % 400 === 0);
+
+        resultado.textContent = `Idade: ${idade} anos. O ano ${ano} ${bissexto ? "é" : "não é"} bissexto.`;
+      }
     </script>
-</body>
+  </body>
 </html>

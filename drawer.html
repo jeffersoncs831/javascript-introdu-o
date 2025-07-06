@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -35,3 +36,37 @@
     </script>
   </body>
 </html>
+=======
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawer</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <button onclick="abrirDrawer()" class="leading-[40px] px-4 rounded bg-black text-white curso-pointer" >Abrir Drawer</button>
+    <div onclick="abrirDrawer()" id="overlay" class="w-full h-screen fixed top-0 left-0 bg-black/90 duration-150 opacity-0 invisible"></div>
+    <div id="drawer" class="w-[400px] h-screen overflow-auto bg-white fixed top-0 -right-[400px] p-4 duration-150 delay-150">
+        <h1 class="flex items-center justify-between" >conteudo do Drawer <span  onclick="abrirDrawer()">X</span></h1>
+    </div>
+
+    <script>
+        function abrirDrawer(){
+            const divOverlay = document.querySelector("#overlay");
+            const divDrawer= document.querySelector("#drawer");
+
+            if(divOverlay.classList.contains("invisible")){
+                divOverlay.classList.remove("opacity-0", "invisible");
+                divDrawer.classList.remove("-right-[400px]");
+                divDrawer.classList.add("right-0");
+            }else{
+                divOverlay.classList.add("opacity-0", "invisible");
+                divDrawer.classList.remove("right-0");
+                divDrawer.classList.add("-right-[400px]");
+            }
+        }
+    </script>   
+</body>
+</html>
+>>>>>>> 962ac65701aec89ffb95c012fc519409769f9c31
